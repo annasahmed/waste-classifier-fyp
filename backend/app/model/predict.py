@@ -1,28 +1,42 @@
-# app/model/predict.py
-
-from app.model.load_model import load_trained_model
+import os
 import numpy as np
+import gdown
+from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from app.utils.image_utils import preprocess_image  # Assuming this function is correctly defined
 
-# Load the model (if not already loaded)
-model = load_trained_model()
+# Path to the model file
+MODEL_PATH = os.path.join(os.path.dirname(__file__), 'garbage_classifier_model.h5')
+GDRIVE_FILE_ID = '1luQ_12BeWknMlvWPRCk7RbK4i9qNBGHC'
 
-# Define the class labels (from the trained model)
-LABELS = ['Metal', 'Glass', 'Biological', 'Paper', 'Battery', 'Trash', 'Cardboard', 'Shoes', 'Clothes', 'Plastic']
+# Download model from Google Drive if not found
+def download_model():
+    url = f'https://drive.google.com/uc?id={GDRIVE_FILE_ID}'
+    print("Model file not found. Downloading from Google Drive...")
+    gdown.download(url, MODEL_PATH, quiet=False)
+
+# Ensure the model file is present
+if not os.path.exists(MODEL_PATH):
+    download_model()
+
+# Load the model
+model = load_model(MODEL_PATH)
+
+# Class names corresponding to your training labels
+class_names = [
+    'battery', 'biological', 'cardboard', 'clothes', 'glass',
+    'metal', 'paper', 'plastic', 'shoes', 'trash'
+]
 
 def predict_image(img_path):
-    # Load and preprocess the image
-    img = image.load_img(img_path, target_size=(224, 224))
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
+    # Preprocess the image
+    img_array = preprocess_image(img_path)
     
-    # Make the prediction
-    predictions = model.predict(img_array)
+    # Make prediction
+    prediction = model.predict(img_array)
     
-    # Get the predicted class and confidence
-    predicted_class_index = np.argmax(predictions, axis=1)[0]
-    confidence = predictions[0][predicted_class_index]
+    # Get predicted class and confidence
+    predicted_class = class_names[np.argmax(prediction)]
+    confidence = np.max(prediction)
     
-    # Return the label and confidence
-    predicted_class = LABELS[predicted_class_index]
     return predicted_class, confidence

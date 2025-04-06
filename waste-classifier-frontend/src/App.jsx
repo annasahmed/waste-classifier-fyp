@@ -206,6 +206,7 @@ const WasteInfoBottomSheet = ({ wasteClass, onClose }) => {
 };
 
 function App() {
+  const [showTeamInfo, setShowTeamInfo] = useState(false);
   const [image, setImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [prediction, setPrediction] = useState(null);
@@ -366,6 +367,53 @@ function App() {
             onClose={() => setShowInfoSheet(false)}
           />
         )}
+
+        {showTeamInfo && (
+          <div className="team-modal">
+            <div className="team-modal-content">
+              <h3>Final Year Project</h3>
+              <h4>Waste Classification System</h4>
+
+              <div className="team-members">
+                <div className="member">
+                  <span>Annas Ahmed</span>
+                  <span>EB21102019</span>
+                </div>
+                <div className="member">
+                  <span>Muhammad Siraj Ahmed</span>
+                  <span>EB21102082</span>
+                </div>
+                <div className="member">
+                  <span>Muhammad Abrar Khan</span>
+                  <span>EB21102051</span>
+                </div>
+                <div className="member">
+                  <span>Shaikh Muhammad Ezan</span>
+                  <span>EB21102103</span>
+                </div>
+              </div>
+
+              <p className="project-description">
+                This intelligent waste classification system helps promote proper
+                waste management by identifying waste types and providing
+                recycling/disposal guidance using machine learning.
+              </p>
+
+              <button
+                className="close-btn"
+                onClick={() => setShowTeamInfo(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
+        <footer className="app-footer">
+          <button onClick={() => setShowTeamInfo(true)}>
+            BCSC FYP - Waste Classification System
+          </button>
+        </footer>
       </div>
     </div>
   );

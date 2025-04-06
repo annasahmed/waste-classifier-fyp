@@ -189,7 +189,9 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Error Message */
@@ -329,8 +331,13 @@ body {
 }
 
 @keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 .bottom-sheet-header {
@@ -385,16 +392,108 @@ body {
   .app-container {
     padding: 1rem;
   }
-  
+
   .app-card {
     padding: 1.5rem;
   }
-  
+
   .submit-btn {
     max-width: 100%;
   }
-  
+
   .bottom-sheet-content {
     max-height: 70vh;
   }
+}
+
+/* Team Information Modal */
+.team-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.team-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.team-modal h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.team-modal h4 {
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.team-members {
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.member {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.member span:first-child {
+  font-weight: 500;
+}
+
+.member span:last-child {
+  color: var(--gray);
+}
+
+.project-description {
+  margin: 1.5rem 0;
+  line-height: 1.6;
+  color: var(--dark);
+}
+
+.info-icon-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+
+.app-footer {
+  margin-top: 2rem;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--light-gray);
+}
+
+.app-footer button {
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  font-size: 0.8rem;
 }

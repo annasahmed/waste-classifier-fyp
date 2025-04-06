@@ -1,0 +1,32 @@
+.app {
+  text-align: center;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+input {
+  margin: 1rem 0;
+}
+
+.preview {
+  margin-top: 1rem;
+  max-width: 300px;
+  max-height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f6f6f6;
+  border-radius: 6px;
+  display: inline-block;
+}

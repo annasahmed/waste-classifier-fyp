@@ -12,6 +12,10 @@ class_names = [
     'battery', 'biological', 'cardboard', 'clothes', 'glass',
     'metal', 'paper', 'plastic', 'shoes', 'trash'
 ]
+# class_names = [
+#     'battery', 'biological', 'cardboard', 'clothes', 'glass',
+#     'metal', 'paper', 'plastic', 'shoes', 'trash'
+# ]
 
 def predict_image(img_path):
     img_array = preprocess_image(img_path)

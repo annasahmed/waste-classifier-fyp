@@ -6,9 +6,9 @@ import os
 
 # Path where the model will be saved
 MODEL_PATH = 'garbage_classifier_model.h5'
-
 def download_model_from_google_drive():
-    file_id = '1luQ_12BeWknMlvWPRCk7RbK4i9qNBGHC'  # Replace with your actual FILE_ID
+    # file_id = '1luQ_12BeWknMlvWPRCk7RbK4i9qNBGHC' # model1  # Replace with your actual FILE_ID
+    file_id = '16c3QBVjcQbHkIBFXyJhTx5lcenzIrYJO'  # Replace with your actual FILE_ID
     download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
 
     # Send GET request to download the file

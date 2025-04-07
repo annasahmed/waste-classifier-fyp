@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import { wasteInfo } from "../data";
@@ -11,7 +11,7 @@ import metal from "./assets/labels/new/metal.png";
 import paper from "./assets/labels/new/paper.png";
 import plastic from "./assets/labels/new/plastic.png";
 import trash from "./assets/labels/new/trash.png";
-
+import { Info } from "lucide-react";
 const WasteInfoBottomSheet = ({ wasteClass, onClose }) => {
 	const info = wasteInfo[wasteClass.toLowerCase()] || wasteInfo.trash;
 
@@ -111,11 +111,24 @@ function App() {
 			setLoading(false);
 		}
 	};
+	const sectionRef = useRef(null);
+
+	const handleScroll = () => {
+		if (sectionRef.current) {
+			const yOffset = 120; // adjust this value as needed
+			const y =
+				sectionRef.current.getBoundingClientRect().top +
+				window.pageYOffset +
+				yOffset;
+
+			window.scrollTo({ top: y, behavior: "smooth" });
+		}
+	};
 
 	return (
 		<>
 			<header
-				className="header-bar z-90 shadow-lg bg-white fixed top-0 w-full"
+				className="header-bar z-90 shadow-lg bg-white fixed top-0 w-full flex justify-between items-center"
 				style={{
 					backgroundImage: "url('/footer_bg.png')",
 					backgroundSize: "cover",
@@ -136,9 +149,18 @@ function App() {
 						Smart Sorting for a Cleaner Tomorrow
 					</p>
 				</div>
+				<button
+					onClick={handleScroll}
+					// disabled={loading || !image}
+					className={`bg-green-400 text-green-900 font-medium rounded-full max-md:hidden`}
+					style={{
+						padding: "2px 15px",
+					}}>
+					Let's Classify
+				</button>
 			</header>
 			<header
-				className="z-90 shadow-lg bg-white fixed/ top-0 w-full"
+				className="header-bar z-90 shadow-lg bg-white fixed/ top-0 w-full flex justify-between items-center"
 				style={{
 					backgroundImage: "url('/footer_bg.png')",
 					backgroundSize: "cover",
@@ -159,6 +181,15 @@ function App() {
 						Smart Sorting for a Cleaner Tomorrow
 					</p>
 				</div>
+				<button
+					onClick={handleScroll}
+					// disabled={loading || !image}
+					className={`bg-green-400 text-green-900 font-medium rounded-full max-md:hidden`}
+					style={{
+						padding: "2px 15px",
+					}}>
+					Let's Classify
+				</button>
 			</header>
 			<div className="relative">
 				<img src={heroImage} className="w-full h-screen/" alt="" />
@@ -171,7 +202,9 @@ function App() {
 				}}>
 				Categories
 			</h4>
-			<div className="flex overflow-x-auto gap-6 header-bar header-bar-2 hide-scrollbar">
+			<div
+				ref={sectionRef}
+				className="flex overflow-x-auto gap-6 header-bar header-bar-2 hide-scrollbar">
 				{labels.map((v, i) => {
 					return (
 						<div
@@ -338,9 +371,8 @@ function App() {
 					{showTeamInfo && (
 						<div className="team-modal">
 							<div className="team-modal-content">
-								<h3>Final Year Project</h3>
-								<h4>Waste Classification System</h4>
-
+								<h3>Final Year Project 2021</h3>
+								<h4>WasteWise - A Smart Waste Classification System</h4>
 								<div className="team-members">
 									<div className="member">
 										<span>Annas Ahmed</span>
@@ -367,7 +399,10 @@ function App() {
 								</p>
 
 								<button
-									className="close-btn"
+									className="close-btn/ w-full rounded-full border"
+									style={{
+										padding: "5px 10px",
+									}}
 									onClick={() => setShowTeamInfo(false)}>
 									Close
 								</button>
@@ -376,8 +411,25 @@ function App() {
 					)}
 
 					<footer className="app-footer">
-						<button onClick={() => setShowTeamInfo(true)}>
+						<button className="">
 							BCSC - 21 FYP - WasteWise - A Smart Waste Classification System
+							{/* <span
+								className="italic"
+								onClick={(e) => {
+									e.stopPropagation(); // prevents triggering parent button's onClick
+									setShowTeamInfo(true);
+								}}
+								style={{ marginLeft: "8px", cursor: "pointer" }}>
+								ℹ️
+							</span> */}
+							<Info
+								onClick={(e) => {
+									e.stopPropagation(); // prevents the button's onClick if any
+									setShowTeamInfo(true);
+								}}
+								size={16} // optional: size of the icon
+								style={{ marginLeft: "8px", cursor: "pointer", display:"inline-block" }}
+							/>
 						</button>
 					</footer>
 				</div>

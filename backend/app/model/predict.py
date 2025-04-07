@@ -6,14 +6,19 @@ from app.utils.image_utils import preprocess_image
 import gdown
 
 # Google Drive file ID and local model path
-MODEL_FILE_ID = '1luQ_12BeWknMlvWPRCk7RbK4i9qNBGHC'
+MODEL_FILE_ID = '16c3QBVjcQbHkIBFXyJhTx5lcenzIrYJO'
+# MODEL_FILE_ID = '1luQ_12BeWknMlvWPRCk7RbK4i9qNBGHC' # model1
 MODEL_PATH = os.path.join(os.path.dirname(__file__), 'garbage_classifier_model.h5')
 
 # Class labels
 class_names = [
-    'battery', 'biological', 'cardboard', 'clothes', 'glass',
-    'metal', 'paper', 'plastic', 'shoes', 'trash'
+     'biological', 'cardboard', 'glass',
+    'metal', 'paper', 'plastic', 'trash'
 ]
+# class_names = [
+#     'battery', 'biological', 'cardboard', 'clothes', 'glass',
+#     'metal', 'paper', 'plastic', 'shoes', 'trash'
+# ]
 
 # Lazy-loaded model
 model = None

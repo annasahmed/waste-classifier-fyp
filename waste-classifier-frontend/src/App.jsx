@@ -10,6 +10,7 @@ import glass from "./assets/labels/new/glass.png";
 import metal from "./assets/labels/new/metal.png";
 import paper from "./assets/labels/new/paper.png";
 import plastic from "./assets/labels/new/plastic.png";
+import organic from "./assets/labels/new/organic.png";
 import trash from "./assets/labels/new/trash.png";
 import { Info } from "lucide-react";
 const WasteInfoBottomSheet = ({ wasteClass, onClose }) => {
@@ -60,6 +61,7 @@ function App() {
 		{ title: "metal", image: metal },
 		{ title: "paper", image: paper },
 		{ title: "plastic", image: plastic },
+		{ title: "biological", image: organic },
 		{ title: "trash", image: trash },
 	];
 
@@ -96,16 +98,14 @@ function App() {
 			);
 
 			if (res.data.confidence < 0.5) {
-				setError(
-					"Low confidence (below 40%). Please try again with a clearer image.",
-				);
+				setError("Please Upload a clear image, Try Again!");
 				setPrediction(null);
 			} else {
 				setPrediction(res.data);
 			}
 		} catch (err) {
 			console.error("Prediction error:", err);
-			setError("Prediction failed. Please try again.");
+			setError("Please Upload a clear image, Try Again!");
 			setPrediction(null);
 		} finally {
 			setLoading(false);
@@ -428,7 +428,11 @@ function App() {
 									setShowTeamInfo(true);
 								}}
 								size={16} // optional: size of the icon
-								style={{ marginLeft: "8px", cursor: "pointer", display:"inline-block" }}
+								style={{
+									marginLeft: "8px",
+									cursor: "pointer",
+									display: "inline-block",
+								}}
 							/>
 						</button>
 					</footer>
